@@ -121,5 +121,5 @@ publishing {
 }
 
 tasks.register<Wrapper>("wrapper") {
-    gradleVersion = "4.1"
+    gradleVersion = "8.5"
 }
