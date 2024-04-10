@@ -111,8 +111,11 @@ publishing {
         }
     }
     publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
+        create<MavenPublication>("github") {
+            from(components["kotlin"])
+            groupId = project.group.toString()
+            artifactId = "lib-gem"
+            version = version
         }
     }
 }

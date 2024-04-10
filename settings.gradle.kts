@@ -2,9 +2,6 @@
 rootProject.name = "gem-lib"
 include("gem-lib")
 
-
-rootProject.name = "gem-lib"
-
 dependencyResolutionManagement {
     versionCatalogs {
         create("tools") {
