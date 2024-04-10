@@ -13,6 +13,10 @@ buildscript {
     }
 }
 
+tasks.wrapper {
+    gradleVersion = "8.5"
+}
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -118,8 +122,4 @@ publishing {
             version = version
         }
     }
-}
-
-tasks.register<Wrapper>("wrapper") {
-    gradleVersion = "8.5"
 }

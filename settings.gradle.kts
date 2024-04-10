@@ -53,10 +53,9 @@ dependencyResolutionManagement {
                     "kotest-assertions-core",
                     "kotest-assertions-json",
                     "kotest-property",
-                    "kotest-framework-datatest",
-                ),
+                    "kotest-framework-datatest"
+                )
             )
-
         }
     }
 }
