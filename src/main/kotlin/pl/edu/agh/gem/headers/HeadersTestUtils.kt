@@ -10,13 +10,12 @@ import pl.edu.agh.gem.security.GemUser
 
 object HeadersTestUtils {
 
-    fun ResponseDefinitionBuilder.withValidatedUser(user: GemUser) = 
-            withHeader(X_OAUTH_TOKEN_VALIDATED, jacksonObjectMapper().writeValueAsString(user))
+    fun ResponseDefinitionBuilder.withValidatedUser(user: GemUser) =
+        withHeader(X_OAUTH_TOKEN_VALIDATED, jacksonObjectMapper().writeValueAsString(user))
 
-    fun ResponseDefinitionBuilder.withAppContentType(type: String = APPLICATION_JSON_INTERNAL_VER_1) = 
-            withHeader(CONTENT_TYPE, type)
-    
+    fun ResponseDefinitionBuilder.withAppContentType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
+        withHeader(CONTENT_TYPE, type)
 
     fun ResponseDefinitionBuilder.withAppAcceptType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
-            withHeader(ACCEPT, type)
+        withHeader(ACCEPT, type)
 }

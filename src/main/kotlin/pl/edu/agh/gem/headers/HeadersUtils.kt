@@ -10,17 +10,17 @@ import pl.edu.agh.gem.security.GemUser
 
 object HeadersUtils {
 
-    fun HttpHeaders.addValidatedUser(user: GemUser) =
+    fun HttpHeaders.withValidatedUser(user: GemUser) =
         apply {
             add(X_OAUTH_TOKEN_VALIDATED, jacksonObjectMapper().writeValueAsString(user))
         }
 
-    fun HttpHeaders.addAppContentType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
+    fun HttpHeaders.withAppContentType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
         apply {
             add(CONTENT_TYPE, type)
         }
 
-    fun HttpHeaders.addAppAcceptType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
+    fun HttpHeaders.withAppAcceptType(type: String = APPLICATION_JSON_INTERNAL_VER_1) =
         apply {
             add(ACCEPT, type)
         }
