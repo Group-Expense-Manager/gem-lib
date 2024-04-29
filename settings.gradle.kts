@@ -6,13 +6,15 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("tools") {
             version("jvm", "21")
-            version("kotlin", "1.9.22")
+            version("kotlin", "1.9.23")
 
             version("ktlint", "11.3.1")
             plugin("ktlint-core", "org.jlleitschuh.gradle.ktlint").versionRef("ktlint")
             plugin("ktlint-idea", "org.jlleitschuh.gradle.ktlint-idea").versionRef("ktlint")
 
             plugin("kover", "org.jetbrains.kotlinx.kover").version("0.6.1")
+
+            plugin("detekt", "io.gitlab.arturbosch.detekt").version("1.23.6")
 
             plugin("dependency-management", "io.spring.dependency-management").version("1.1.4")
             plugin("spring-boot", "org.springframework.boot").version("3.2.3")
@@ -40,6 +42,7 @@ dependencyResolutionManagement {
             library("kotest-assertions-json", "io.kotest", "kotest-assertions-json").versionRef("kotest")
             library("kotest-property", "io.kotest", "kotest-property").versionRef("kotest")
             library("kotest-framework-datatest", "io.kotest", "kotest-framework-datatest").versionRef("kotest")
+            library("kotest-wiremock", "io.kotest.extensions:kotest-extensions-wiremock:3.0.1")
 
             library("mockito", "org.mockito.kotlin:mockito-kotlin:5.2.1")
             library("archunit", "com.tngtech.archunit:archunit-junit5:1.2.1")
@@ -53,9 +56,19 @@ dependencyResolutionManagement {
                     "kotest-assertions-core",
                     "kotest-assertions-json",
                     "kotest-property",
-                    "kotest-framework-datatest"
-                )
+                    "kotest-wiremock",
+                    "kotest-framework-datatest",
+                ),
             )
+        }
+        create("detectlibs") {
+            library("detekt-formatting", "io.gitlab.arturbosch.detekt", "detekt-formatting").version("1.23.6")
+            library("detekt-rules-libraries", "io.gitlab.arturbosch.detekt", "detekt-rules-libraries").version("1.23.6")
+            library("detekt-rules-ruleauthors", "io.gitlab.arturbosch.detekt", "detekt-rules-ruleauthors").version("1.23.6")
+            library("detekt-compiler-wrapper", "com.braisgabin.detekt", "kotlin-compiler-wrapper").version("0.0.4")
+            library("detekt-faire", "com.github.Faire", "faire-detekt-rules").version("0.1.1")
+            library("detekt-hbmartin", "com.github.hbmartin", "hbmartin-detekt-rules").version("0.1.4")
+            library("kure-potlin", "pl.setblack", "kure-potlin").version("0.7.0")
         }
     }
 }
