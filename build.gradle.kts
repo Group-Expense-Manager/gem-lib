@@ -58,7 +58,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-
     implementation(libs.kotlinlogging)
 
     implementation(testlibs.bundles.kotest.core)
