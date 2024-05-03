@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.1.2"
+version = "0.1.3"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
@@ -55,21 +55,16 @@ apply(plugin = "kover")
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(tools.bundles.kotlin)
-    implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-aop")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
 
     implementation(libs.kotlinlogging)
 
     implementation(testlibs.bundles.kotest.core)
     implementation(testlibs.mockito)
     implementation(testlibs.archunit)
+    implementation(testlibs.wiremock)
     implementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly(testlibs.junit)
 

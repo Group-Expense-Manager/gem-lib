@@ -42,11 +42,11 @@ dependencyResolutionManagement {
             library("kotest-assertions-json", "io.kotest", "kotest-assertions-json").versionRef("kotest")
             library("kotest-property", "io.kotest", "kotest-property").versionRef("kotest")
             library("kotest-framework-datatest", "io.kotest", "kotest-framework-datatest").versionRef("kotest")
-            library("kotest-wiremock", "io.kotest.extensions:kotest-extensions-wiremock:3.0.1")
 
             library("mockito", "org.mockito.kotlin:mockito-kotlin:5.2.1")
             library("archunit", "com.tngtech.archunit:archunit-junit5:1.2.1")
-
+            library("wiremock", "com.github.tomakehurst:wiremock:3.0.1")
+            
             library("junit", "org.junit.jupiter:junit-jupiter-engine:5.10.2")
 
             bundle(
@@ -56,7 +56,6 @@ dependencyResolutionManagement {
                     "kotest-assertions-core",
                     "kotest-assertions-json",
                     "kotest-property",
-                    "kotest-wiremock",
                     "kotest-framework-datatest",
                 ),
             )
