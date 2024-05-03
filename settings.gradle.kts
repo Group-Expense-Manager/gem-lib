@@ -46,6 +46,7 @@ dependencyResolutionManagement {
 
             library("mockito", "org.mockito.kotlin:mockito-kotlin:5.2.1")
             library("archunit", "com.tngtech.archunit:archunit-junit5:1.2.1")
+            library("wiremock", "com.github.tomakehurst:wiremock:3.0.1")
 
             library("junit", "org.junit.jupiter:junit-jupiter-engine:5.10.2")
 
