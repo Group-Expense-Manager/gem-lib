@@ -27,3 +27,12 @@ fun SimpleError.withPath(path: String?) =
 
 fun SimpleError.withUserMessage(userMessage: String?) =
     this.copy(userMessage = userMessage)
+
+fun handleError(exception: Exception): SimpleErrorsHolder {
+    return SimpleError()
+        .withCode(exception.javaClass.simpleName)
+        .withMessage(exception.message)
+        .withDetails(exception.javaClass.simpleName)
+        .withUserMessage(exception.message)
+        .toSimpleErrorHolder()
+}
