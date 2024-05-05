@@ -14,31 +14,31 @@ object DummyGroup {
 fun createGroupMembersResponse(
     user: String = USER_ID,
 ) = GroupMembersResponse(
-        members = listOf(
-                createGroupMemberResponse(
-                        id = user,
-                ),
+    members = listOf(
+        createGroupMemberResponse(
+            id = user,
         ),
+    ),
 )
 
 fun createGroupMemberResponse(
     id: String = USER_ID,
 ) = GroupMemberResponse(
-        id = id,
+    id = id,
 )
 
 fun createGroupMembers(
     user: String = USER_ID,
 ) = GroupMembers(
-        members = listOf(
-                createGroupMember(
-                        id = user,
-                        )
-        )
+    members = listOf(
+        createGroupMember(
+            id = user,
+        ),
+    ),
 )
 
 fun createGroupMember(
     id: String = USER_ID,
 ) = GroupMember(
-        id = id,
+    id = id,
 )

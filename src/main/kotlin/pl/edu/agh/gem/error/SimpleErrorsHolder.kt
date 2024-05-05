@@ -30,9 +30,9 @@ fun SimpleError.withUserMessage(userMessage: String?) =
 
 fun handleError(exception: Exception): SimpleErrorsHolder {
     return SimpleError()
-            .withCode(exception.javaClass.simpleName)
-            .withMessage(exception.message)
-            .withDetails(exception.javaClass.simpleName)
-            .withUserMessage(exception.message)
-            .toSimpleErrorHolder()
+        .withCode(exception.javaClass.simpleName)
+        .withMessage(exception.message)
+        .withDetails(exception.javaClass.simpleName)
+        .withUserMessage(exception.message)
+        .toSimpleErrorHolder()
 }

@@ -12,10 +12,9 @@ data class GroupMemberResponse(
 )
 
 fun GroupMembersResponse.toDomain() = GroupMembers(
-        members = members.map { it.toDomain() },
+    members = members.map { it.toDomain() },
 )
 
 fun GroupMemberResponse.toDomain() = GroupMember(
-        id = id,
+    id = id,
 )
-
