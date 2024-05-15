@@ -1,5 +1,7 @@
 package pl.edu.agh.gem.error
 
+import pl.edu.agh.gem.validator.ValidatorsException
+
 data class SimpleErrorsHolder(val errors: List<SimpleError>)
 
 fun SimpleError.toSimpleErrorHolder() =
@@ -35,4 +37,14 @@ fun handleError(exception: Exception): SimpleErrorsHolder {
         .withDetails(exception.javaClass.simpleName)
         .withUserMessage(exception.message)
         .toSimpleErrorHolder()
+}
+
+fun handleValidatorsException(exception: ValidatorsException): SimpleErrorsHolder {
+    val errors = exception.failedValidations
+        .map { error ->
+            SimpleError()
+                .withCode("VALIDATOR_ERROR")
+                .withMessage(error)
+        }
+    return SimpleErrorsHolder(errors)
 }
