@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.1.4"
+version = "0.1.5"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
@@ -108,6 +108,11 @@ tasks {
     withType<org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask> {
         workerMaxHeapSize.set("512m")
     }
+
+    register<Jar>("sourcesJar") {
+        from(sourceSets.main.get().allSource)
+        archiveClassifier.set("sources")
+    }
 }
 
 publishing {
@@ -124,6 +129,7 @@ publishing {
     publications {
         create<MavenPublication>("github") {
             from(components["kotlin"])
+            artifact(tasks["sourcesJar"])
             groupId = project.group.toString()
             artifactId = "lib-gem"
             version = version
