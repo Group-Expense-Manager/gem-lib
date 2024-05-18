@@ -1,7 +1,7 @@
 package pl.edu.agh.gem.validator
 
 class Check<T : DataWrapper>(
-    private val name: CheckName,
+    private val name: String,
     private val checker: (T) -> Boolean,
 ) {
     fun apply(data: T): CheckResult {
@@ -12,8 +12,6 @@ class Check<T : DataWrapper>(
         }
     }
 }
-
-typealias CheckName = String
 
 interface DataWrapper
 
