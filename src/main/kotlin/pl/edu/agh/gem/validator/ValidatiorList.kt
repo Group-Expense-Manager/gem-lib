@@ -1,6 +1,6 @@
 package pl.edu.agh.gem.validator
 
-class ValidatiorList<T : DataWrapper>(val validators: List<BaseValidator<T>>) {
+class ValidatiorList<T : DataWrapper>(private val validators: List<BaseValidator<T>>) {
 
     fun getFailedValidations(dataWrapper: T): List<String> {
         return validators
