@@ -1,6 +1,6 @@
 package pl.edu.agh.gem.validator
 
-class ValidatiorList<T : DataWrapper>(private val validators: List<BaseValidator<T>>) {
+class ValidatorList<T : DataWrapper>(private val validators: List<BaseValidator<T>>) {
 
     fun getFailedValidations(dataWrapper: T): List<String> {
         return validators
@@ -10,8 +10,8 @@ class ValidatiorList<T : DataWrapper>(private val validators: List<BaseValidator
     }
 
     companion object {
-        fun <T : DataWrapper> validatorsOf(vararg validations: BaseValidator<T>): ValidatiorList<T> {
-            return ValidatiorList(validations.toList())
+        fun <T : DataWrapper> validatorsOf(vararg validations: BaseValidator<T>): ValidatorList<T> {
+            return ValidatorList(validations.toList())
         }
     }
 }
