@@ -23,9 +23,9 @@ fun createGroupMembersResponse(
 )
 
 fun createGroupMembersResponse(
-    users: List<String> = listOf(USER_ID, OTHER_GROUP_ID),
+    vararg users: String = arrayOf(USER_ID),
 ) = GroupMembersResponse(
-    members = users.map { createGroupMemberResponse(it) },
+    members = users.map { GroupMemberResponse(it) }
 )
 
 fun createGroupMemberResponse(
@@ -35,13 +35,9 @@ fun createGroupMemberResponse(
 )
 
 fun createGroupMembers(
-    user: String = USER_ID,
+    vararg users: String = arrayOf(USER_ID),
 ) = GroupMembers(
-    members = listOf(
-        createGroupMember(
-            id = user,
-        ),
-    ),
+    members = users.map { GroupMember(it) }
 )
 
 fun createGroupMembers(
