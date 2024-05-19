@@ -2,6 +2,7 @@ package pl.edu.agh.gem.helper.group
 
 import pl.edu.agh.gem.dto.GroupMemberResponse
 import pl.edu.agh.gem.dto.GroupMembersResponse
+import pl.edu.agh.gem.helper.group.DummyGroup.OTHER_GROUP_ID
 import pl.edu.agh.gem.helper.user.DummyUser.USER_ID
 import pl.edu.agh.gem.model.GroupMember
 import pl.edu.agh.gem.model.GroupMembers
@@ -21,6 +22,12 @@ fun createGroupMembersResponse(
     ),
 )
 
+fun createGroupMembersResponse(
+    users: List<String> = listOf(USER_ID, OTHER_GROUP_ID),
+) = GroupMembersResponse(
+    members = users.map { createGroupMemberResponse(it) },
+)
+
 fun createGroupMemberResponse(
     id: String = USER_ID,
 ) = GroupMemberResponse(
@@ -35,6 +42,12 @@ fun createGroupMembers(
             id = user,
         ),
     ),
+)
+
+fun createGroupMembers(
+    users: List<String> = listOf(USER_ID, OTHER_GROUP_ID),
+) = GroupMembers(
+    members = users.map { createGroupMember(it) },
 )
 
 fun createGroupMember(
