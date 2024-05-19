@@ -26,3 +26,8 @@ infix fun ResponseSpec.shouldHaveValidationError(errorMessage: String) {
     this.expectBody(SimpleErrorsHolder::class.java).returnResult().responseBody?.errors
         ?.shouldExist { it.code == "VALIDATION_ERROR" && it.message == errorMessage }
 }
+
+infix fun ResponseSpec.shouldHaveValidatorError(errorMessage: String) {
+    this.expectBody(SimpleErrorsHolder::class.java).returnResult().responseBody?.errors
+        ?.shouldExist { it.code == "VALIDATOR_ERROR" && it.message == errorMessage }
+}
