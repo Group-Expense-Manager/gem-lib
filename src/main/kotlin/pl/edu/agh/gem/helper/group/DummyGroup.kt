@@ -25,7 +25,7 @@ fun createGroupMembersResponse(
 fun createGroupMembersResponse(
     vararg users: String = arrayOf(USER_ID),
 ) = GroupMembersResponse(
-    members = users.map { GroupMemberResponse(it) }
+    members = users.map { GroupMemberResponse(it) },
 )
 
 fun createGroupMemberResponse(
@@ -37,7 +37,7 @@ fun createGroupMemberResponse(
 fun createGroupMembers(
     vararg users: String = arrayOf(USER_ID),
 ) = GroupMembers(
-    members = users.map { GroupMember(it) }
+    members = users.map { GroupMember(it) },
 )
 
 fun createGroupMembers(
