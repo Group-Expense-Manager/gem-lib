@@ -4,7 +4,7 @@ class ValidatiorList<T : DataWrapper>(private val validators: List<BaseValidator
 
     fun getFailedValidations(dataWrapper: T): List<String> {
         return validators
-            .flatMap { validators-> validators.apply(dataWrapper) }
+            .flatMap { validators -> validators.apply(dataWrapper) }
             .filterIsInstance<FailureCheckResult>()
             .map { it.name }
     }

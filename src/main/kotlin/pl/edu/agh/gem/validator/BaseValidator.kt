@@ -5,5 +5,4 @@ abstract class BaseValidator<T : DataWrapper> {
 
     fun apply(dataWrapper: T) =
         checks.map { it.apply(dataWrapper) }
-    
 }
