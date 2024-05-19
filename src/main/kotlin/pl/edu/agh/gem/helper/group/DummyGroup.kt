@@ -25,7 +25,7 @@ fun createGroupMembersResponse(
 fun createGroupMembersResponse(
     users: List<String> = listOf(USER_ID, OTHER_GROUP_ID),
 ) = GroupMembersResponse(
-        members = users.map { createGroupMemberResponse(it) },
+    members = users.map { createGroupMemberResponse(it) },
 )
 
 fun createGroupMemberResponse(
@@ -47,7 +47,7 @@ fun createGroupMembers(
 fun createGroupMembers(
     users: List<String> = listOf(USER_ID, OTHER_GROUP_ID),
 ) = GroupMembers(
-        members = users.map { createGroupMember(it) },
+    members = users.map { createGroupMember(it) },
 )
 
 fun createGroupMember(
