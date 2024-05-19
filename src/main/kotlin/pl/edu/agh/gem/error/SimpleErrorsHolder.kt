@@ -1,5 +1,6 @@
 package pl.edu.agh.gem.error
 
+import org.springframework.web.bind.MethodArgumentNotValidException
 import pl.edu.agh.gem.validator.ValidatorsException
 
 data class SimpleErrorsHolder(val errors: List<SimpleError>)
@@ -45,6 +46,18 @@ fun handleValidatorsException(exception: ValidatorsException): SimpleErrorsHolde
             SimpleError()
                 .withCode("VALIDATOR_ERROR")
                 .withMessage(error)
+        }
+    return SimpleErrorsHolder(errors)
+}
+
+fun handleNotValidException(exception: MethodArgumentNotValidException): SimpleErrorsHolder {
+    val errors = exception.bindingResult.fieldErrors
+        .map { error ->
+            SimpleError()
+                .withCode("VALIDATION_ERROR")
+                .withDetails(error.field)
+                .withUserMessage(error.defaultMessage)
+                .withMessage(error.defaultMessage)
         }
     return SimpleErrorsHolder(errors)
 }
