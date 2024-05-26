@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.1.10"
+version = "0.1.11"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
@@ -58,6 +58,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation(libs.kotlinlogging)
 
