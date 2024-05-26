@@ -6,11 +6,11 @@ import jakarta.validation.ConstraintValidatorContext
 import org.mockito.kotlin.mock
 
 class NullOrNotBlankValidatorTest : ShouldSpec({
+    val constraintValidatorContext = mock<ConstraintValidatorContext>()
     should("accept null value") {
         // given
         val nullString: String? = null
         val validator = NullOrNotBlankValidator()
-        val constraintValidatorContext = mock<ConstraintValidatorContext>()
 
         // given
         val result = validator.isValid(nullString, constraintValidatorContext)
@@ -23,7 +23,6 @@ class NullOrNotBlankValidatorTest : ShouldSpec({
         // given
         val string = "value"
         val validator = NullOrNotBlankValidator()
-        val constraintValidatorContext = mock<ConstraintValidatorContext>()
 
         // given
         val result = validator.isValid(string, constraintValidatorContext)
@@ -36,7 +35,6 @@ class NullOrNotBlankValidatorTest : ShouldSpec({
         // given
         val nullString = ""
         val validator = NullOrNotBlankValidator()
-        val constraintValidatorContext = mock<ConstraintValidatorContext>()
 
         // given
         val result = validator.isValid(nullString, constraintValidatorContext)
