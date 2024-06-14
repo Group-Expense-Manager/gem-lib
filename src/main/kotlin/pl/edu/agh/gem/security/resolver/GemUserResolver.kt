@@ -21,7 +21,9 @@ class GemUserResolver : HandlerMethodArgumentResolver {
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?,
     ): Any? {
-        val authHeader = webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED) ?: return null
+        val authHeader = webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED) ?: throw MissingTokenException()
         return jacksonObjectMapper().readValue(authHeader, GemUser::class.java)
     }
 }
+
+class MissingTokenException : RuntimeException("Missing token in request")

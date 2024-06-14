@@ -1,6 +1,7 @@
 package pl.edu.agh.gem.security
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import org.mockito.Mockito.mock
@@ -11,6 +12,7 @@ import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.web.method.support.ModelAndViewContainer
 import pl.edu.agh.gem.headers.CustomHeaders.X_OAUTH_TOKEN_VALIDATED
 import pl.edu.agh.gem.security.resolver.GemEmailResolver
+import pl.edu.agh.gem.security.resolver.MissingTokenException
 
 class GemEmailResolverTest : ShouldSpec({
 
@@ -20,7 +22,7 @@ class GemEmailResolverTest : ShouldSpec({
     val webRequest = mock<NativeWebRequest>()
     val binderFactory = mock<WebDataBinderFactory>()
 
-    should("GemUserResolver should resolve GemUser from request header") {
+    should("GemUserResolver resolve GemUser email from request header") {
         // Given
         val user = GemUser("123", "example@op.pl")
         whenever(webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED)).thenReturn(jacksonObjectMapper().writeValueAsString(user))
@@ -30,5 +32,12 @@ class GemEmailResolverTest : ShouldSpec({
 
         // Then
         result shouldBe user.email
+    }
+
+    should("throw MissingTokenException when trying resolve GemUser email from request header") {
+        // When & Then
+        shouldThrow<MissingTokenException> {
+            resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory)
+        }
     }
 },)

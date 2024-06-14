@@ -21,7 +21,7 @@ class GemUserIdResolver : HandlerMethodArgumentResolver {
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?,
     ): Any? {
-        val authHeader = webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED) ?: return null
+        val authHeader = webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED) ?: throw MissingTokenException()
         val user = jacksonObjectMapper().readValue(authHeader, GemUser::class.java)
         return user.id
     }
