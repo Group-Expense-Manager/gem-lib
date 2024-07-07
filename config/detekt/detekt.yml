@@ -1017,7 +1017,7 @@ HbmartinRuleSet:
   AvoidMutableCollections:
     active: true
   AvoidVarsExceptWithDelegate:
-    active: flase
+    active: false
     allowedDelegates:
       - 'remember\w*'
       - 'mutableState\w*'
