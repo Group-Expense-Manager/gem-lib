@@ -5,7 +5,6 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@MustBeDocumented
 @Constraint(validatedBy = [NullOrPatternValidator::class])
 annotation class NullOrPattern(
     val message: String = "{javax.validation.constraints.NullOrUsernamePattern.message}",
