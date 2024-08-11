@@ -16,14 +16,14 @@ class ValidatorList<T : DataWrapper>(private val validators: List<BaseValidator<
     }
 }
 
-fun <T : DataWrapper> validate(dataWrapper: T,validator: BaseValidator<T>): List<String>{
-     return validator.apply(dataWrapper)
-            .filterIsInstance<FailureCheckResult>()
-            .map { it.name }
+fun <T : DataWrapper> validate(dataWrapper: T, validator: BaseValidator<T>): List<String> {
+    return validator.apply(dataWrapper)
+        .filterIsInstance<FailureCheckResult>()
+        .map { it.name }
 }
 
-fun <T : DataWrapper> List<String>.alsoValidate(dataWrapper: T,validator: BaseValidator<T>) : List<String>{
+fun <T : DataWrapper> List<String>.alsoValidate(dataWrapper: T, validator: BaseValidator<T>): List<String> {
     return this + validator.apply(dataWrapper)
-            .filterIsInstance<FailureCheckResult>()
-            .map { it.name }
+        .filterIsInstance<FailureCheckResult>()
+        .map { it.name }
 }
