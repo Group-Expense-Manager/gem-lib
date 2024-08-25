@@ -11,29 +11,29 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 class CustomHttpServletRequestWrapper(
-    private val request: HttpServletRequest
+    private val request: HttpServletRequest,
 ) : HttpServletRequestWrapper(request) {
 
     private val body: ByteArray = StreamUtils.copyToByteArray(
-            this.request.inputStream
+        this.request.inputStream,
     )
 
     override fun getInputStream(): ServletInputStream {
         return HttpBodyServletInputStream(
-                inputStream = ByteArrayInputStream(body)
+            inputStream = ByteArrayInputStream(body),
         )
     }
 
     override fun getReader(): BufferedReader {
         return BufferedReader(
-                InputStreamReader(
-                        ByteArrayInputStream(body)
-                )
+            InputStreamReader(
+                ByteArrayInputStream(body),
+            ),
         )
     }
-    
+
     private class HttpBodyServletInputStream(
-        private val inputStream: InputStream
+        private val inputStream: InputStream,
     ) : ServletInputStream() {
 
         override fun read(): Int = inputStream.read()

@@ -5,12 +5,12 @@ import jakarta.servlet.WriteListener
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.servlet.http.HttpServletResponseWrapper
 import java.io.ByteArrayOutputStream
-import java.io.PrintWriter
 import java.io.OutputStreamWriter
+import java.io.PrintWriter
 import kotlin.text.Charsets.UTF_8
 
 class CustomHttpServletResponseWrapper(
-    private val response: HttpServletResponse
+    private val response: HttpServletResponse,
 ) : HttpServletResponseWrapper(response) {
 
     private val byteArrayOutputStream = ByteArrayOutputStream()
@@ -25,25 +25,25 @@ class CustomHttpServletResponseWrapper(
 
     override fun getOutputStream(): ServletOutputStream {
         return HttpBodyServletOutputStream(
-                outputStream = this.byteArrayOutputStream,
+            outputStream = this.byteArrayOutputStream,
         )
     }
 
     override fun getWriter(): PrintWriter {
         return PrintWriter(
-                OutputStreamWriter(
-                        this.byteArrayOutputStream,
-                        this.response.characterEncoding
-                )
+            OutputStreamWriter(
+                this.byteArrayOutputStream,
+                this.response.characterEncoding,
+            ),
         )
     }
 
     override fun flushBuffer() = writer.flush()
 
     override fun toString(): String = writer.toString()
-    
+
     private class HttpBodyServletOutputStream(
-        private val outputStream: ByteArrayOutputStream
+        private val outputStream: ByteArrayOutputStream,
     ) : ServletOutputStream() {
 
         override fun write(b: Int) = outputStream.write(b)

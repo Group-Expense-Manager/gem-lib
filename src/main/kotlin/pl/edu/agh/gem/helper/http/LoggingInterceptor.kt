@@ -69,9 +69,9 @@ class LoggingInterceptor(
 
     private fun logHeadersString(headers: HttpHeaders): String {
         return headers
-                .filterKeys { it !in properties.excludeHeaders }
-                .map { "${it.key}: ${it.value.joinToString()}" }
-                .joinToString("\n\t")
+            .filterKeys { it !in properties.excludeHeaders }
+            .map { "${it.key}: ${it.value.joinToString()}" }
+            .joinToString("\n\t")
     }
 
     private fun logPayloadString(payload: ByteArray): String {
@@ -85,7 +85,7 @@ class LoggingInterceptor(
     }
 
     private class CachedBodyClientHttpResponse(
-        private val delegate: ClientHttpResponse
+        private val delegate: ClientHttpResponse,
     ) : ClientHttpResponse by delegate {
         private val bodyBytes: ByteArray = delegate.body.readAllBytes()
 
