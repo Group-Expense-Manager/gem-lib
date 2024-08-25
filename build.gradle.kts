@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.2.5"
+version = "0.3.0"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
@@ -61,6 +61,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation(libs.kotlinlogging)
+    implementation(libs.loki.logback.appender)
 
     implementation(testlibs.bundles.kotest.core)
     implementation(testlibs.mockito)

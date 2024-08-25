@@ -32,6 +32,7 @@ dependencyResolutionManagement {
             version("dependency-management", "1.1.4")
 
             library("guava", "com.google.guava:guava:33.1.0-jre")
+            library("loki-logback-appender", "com.github.loki4j:loki-logback-appender:1.5.2")
             library("kotlinlogging", "io.github.microutils:kotlin-logging:3.0.5")
         }
 
