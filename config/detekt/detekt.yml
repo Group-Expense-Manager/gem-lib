@@ -215,7 +215,7 @@ empty-blocks:
   EmptyForBlock:
     active: true
   EmptyFunctionBlock:
-    active: true
+    active: false
     ignoreOverridden: false
   EmptyIfBlock:
     active: true
@@ -1026,7 +1026,7 @@ HbmartinRuleSet:
   MutableTypeShouldBePrivate:
     active: true
   NoCallbacksInFunctions:
-    active: true
+    active: false
     ignoreAnnotated: ['Composable']
     allowExtensions: true
     allowReceivers: true

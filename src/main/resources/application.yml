@@ -1,0 +1,8 @@
+gem:
+  http:
+    logging:
+      enabled: true
+
+logging:
+  level:
+    root: DEBUG
