@@ -8,7 +8,6 @@ import pl.edu.agh.gem.helper.logger.LoggerType.TRACE
 import pl.edu.agh.gem.helper.logger.LoggerType.WARN
 
 object LoggerHelper {
-
     fun getLogger(level: LoggerType, function: () -> String) {
         val logger = KotlinLogging.logger { }
         return when (level) {
