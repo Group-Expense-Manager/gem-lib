@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.4.0"
+version = "0.4.1"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
