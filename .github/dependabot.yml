@@ -36,9 +36,9 @@ updates:
         patterns:
           - "*"
         update-types:
-          - "patch"
-          - "minor"
           - "major"
+          - "minor"
+          - "patch"
 
   # Update GitHub Actions
   - package-ecosystem: "github-actions"
@@ -52,6 +52,6 @@ updates:
         patterns:
           - "*"
         update-types:
-          - "patch"
-          - "minor"
           - "major"
+          - "minor"
+          - "patch"
