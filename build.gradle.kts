@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.spring.boot.starter.actuator)
     implementation(libs.spring.boot.starter.aop)
     implementation(libs.micrometer.registry.prometheus)
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
     implementation(testlibs.bundles.kotest.core)
     implementation(testlibs.mockito)
