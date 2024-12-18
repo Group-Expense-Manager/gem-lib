@@ -1,6 +1,7 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
@@ -17,7 +18,7 @@ buildscript {
 }
 
 tasks.wrapper {
-    gradleVersion = "8.5"
+    gradleVersion = "8.11.1"
 }
 
 repositories {
@@ -46,11 +47,6 @@ plugins {
 
 project.group = "pl.edu.agh.gem"
 version = "0.4.2"
-
-apply(plugin = "kotlin")
-apply(plugin = "kotlin-spring")
-apply(plugin = "java")
-apply(plugin = "kover")
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
@@ -95,9 +91,8 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = tools.versions.jvm.get()
-            freeCompilerArgs = listOf("-Xjvm-default=all", "-Xemit-jvm-type-annotations")
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(tools.versions.jvm.get()))
         }
     }
 
