@@ -22,7 +22,7 @@ class MeteredClientAspect(
 ) {
 
     @Around("@within(pl.edu.agh.gem.metrics.MeteredClient)")
-    fun meter(joinPoint: ProceedingJoinPoint) {
+    fun meter(joinPoint: ProceedingJoinPoint): Any? {
         val method = joinPoint.signature as? MethodSignature
             ?: throw IllegalArgumentException("Join point signature is not a MethodSignature")
         val className = method.method.declaringClass.simpleName
@@ -41,11 +41,13 @@ class MeteredClientAspect(
             .publishPercentiles(*PERCENTILES)
             .register(meterRegistry)
 
-        try {
-            timer.recordCallable { joinPoint.proceed() }
-            counter.increment()
+        return try {
+            timer.recordCallable { joinPoint.proceed() }.also {
+                counter.increment()
+            }
         } catch (e: Exception) {
             println("Exception occurred during method execution: ${e.message}")
+            throw e
         }
     }
 
