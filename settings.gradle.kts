@@ -32,12 +32,12 @@ dependencyResolutionManagement {
             version("dependency-management", "1.1.4")
             version("springdoc-openapi", "2.7.0")
 
-            library("guava", "com.google.guava:guava:33.1.0-jre")
+            library("guava", "com.google.guava:guava:33.4.0-jre")
             library("loki-logback-appender", "com.github.loki4j:loki-logback-appender:1.5.2")
 
             library("spring-boot-starter-actuator", "org.springframework.boot:spring-boot-starter-actuator:3.4.0")
             library("spring-boot-starter-aop", "org.springframework.boot:spring-boot-starter-aop:3.4.0")
-            library("micrometer-registry-prometheus", "io.micrometer:micrometer-registry-prometheus:1.14.1")
+            library("micrometer-registry-prometheus", "io.micrometer:micrometer-registry-prometheus:1.14.2")
 
             library("kotlinlogging", "io.github.microutils:kotlin-logging:3.0.5")
 
@@ -52,13 +52,13 @@ dependencyResolutionManagement {
             library("kotest-assertions-json", "io.kotest", "kotest-assertions-json").versionRef("kotest")
             library("kotest-property", "io.kotest", "kotest-property").versionRef("kotest")
             library("kotest-framework-datatest", "io.kotest", "kotest-framework-datatest").versionRef("kotest")
-            library("kotest-wiremock", "io.kotest.extensions:kotest-extensions-wiremock:3.0.1")
+            library("kotest-wiremock", "io.kotest.extensions:kotest-extensions-wiremock:3.1.0")
 
-            library("mockito", "org.mockito.kotlin:mockito-kotlin:5.2.1")
-            library("archunit", "com.tngtech.archunit:archunit-junit5:1.2.1")
+            library("mockito", "org.mockito.kotlin:mockito-kotlin:5.4.0")
+            library("archunit", "com.tngtech.archunit:archunit-junit5:1.3.0")
             library("wiremock", "com.github.tomakehurst:wiremock:3.0.1")
 
-            library("junit", "org.junit.jupiter:junit-jupiter-engine:5.10.2")
+            library("junit", "org.junit.jupiter:junit-jupiter-engine:5.11.4")
 
             bundle(
                 "kotest-core",
