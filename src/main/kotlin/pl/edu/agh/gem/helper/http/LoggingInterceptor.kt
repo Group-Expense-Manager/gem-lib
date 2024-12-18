@@ -7,6 +7,7 @@ import org.springframework.http.client.ClientHttpRequestInterceptor
 import org.springframework.http.client.ClientHttpResponse
 import org.springframework.stereotype.Component
 import pl.edu.agh.gem.config.HttpLoggingProperties
+import pl.edu.agh.gem.headers.CustomHeaders.TRACE_ID
 import pl.edu.agh.gem.helper.logger.LoggerHelper.getLogger
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
@@ -26,6 +27,12 @@ class LoggingInterceptor(
     ): ClientHttpResponse {
         val url = request.uri.toString()
         val shouldLog = properties.excludeUrlPrefixes.none { url.startsWith(it) }
+
+        val traceId = request.headers[TRACE_ID]?.toString() ?: run {
+            TraceIdGenerator.generateTraceId()
+        }
+        request.headers.add(TRACE_ID, traceId)
+        TraceIdContextHolder.setTraceId(traceId)
 
         if (shouldLog) {
             val logMessage = StringBuilder("Client HTTP Request - ${request.method} ${request.uri.path}\n")
