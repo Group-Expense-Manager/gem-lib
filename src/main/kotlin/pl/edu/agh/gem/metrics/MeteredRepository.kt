@@ -18,7 +18,7 @@ annotation class MeteredRepository
 @Aspect
 @Component
 class MeteredRepositoryAspect(
-    @Autowired private val meterRegistry: MeterRegistry
+    @Autowired private val meterRegistry: MeterRegistry,
 ) {
 
     @Around("@within(pl.edu.agh.gem.metrics.MeteredRepository)")
@@ -27,18 +27,18 @@ class MeteredRepositoryAspect(
         val className = method.method.declaringClass.simpleName
         val methodName = method.method.name
         val tags = listOf(
-                Tag.of("repository", className),
-                Tag.of("handler", methodName)
+            Tag.of("repository", className),
+            Tag.of("handler", methodName),
         )
 
         val counter = Counter.builder("metered.repository.counter")
-                .tags(tags)
-                .register(meterRegistry)
-        
+            .tags(tags)
+            .register(meterRegistry)
+
         val timer = Timer.builder("metered.repository")
-                .tags(tags)
-                .publishPercentiles(0.50, 0.90, 0.99, 0.999)
-                .register(meterRegistry)
+            .tags(tags)
+            .publishPercentiles(0.50, 0.90, 0.99, 0.999)
+            .register(meterRegistry)
 
         try {
             timer.recordCallable { joinPoint.proceed() }

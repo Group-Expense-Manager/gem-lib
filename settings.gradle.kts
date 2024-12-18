@@ -34,14 +34,14 @@ dependencyResolutionManagement {
 
             library("guava", "com.google.guava:guava:33.1.0-jre")
             library("loki-logback-appender", "com.github.loki4j:loki-logback-appender:1.5.2")
-            
+
             library("spring-boot-starter-actuator", "org.springframework.boot:spring-boot-starter-actuator:3.4.0")
             library("spring-boot-starter-aop", "org.springframework.boot:spring-boot-starter-aop:3.4.0")
             library("micrometer-registry-prometheus", "io.micrometer:micrometer-registry-prometheus:1.14.1")
-            
+
             library("kotlinlogging", "io.github.microutils:kotlin-logging:3.0.5")
-            
-            library("springdoc-openapi-starter-webmvc-ui", "org.springdoc","springdoc-openapi-starter-webmvc-ui").versionRef("springdoc-openapi")
+
+            library("springdoc-openapi-starter-webmvc-ui", "org.springdoc", "springdoc-openapi-starter-webmvc-ui").versionRef("springdoc-openapi")
         }
 
         create("testlibs") {

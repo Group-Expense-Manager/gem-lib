@@ -15,11 +15,10 @@ import org.springframework.stereotype.Component
 @Retention(AnnotationRetention.RUNTIME)
 annotation class MeteredClient
 
-
 @Aspect
 @Component
 class MeteredClientAspect(
-    @Autowired private val meterRegistry: MeterRegistry
+    @Autowired private val meterRegistry: MeterRegistry,
 ) {
 
     @Around("@within(pl.edu.agh.gem.metrics.MeteredClient)")
@@ -28,18 +27,18 @@ class MeteredClientAspect(
         val className = method.method.declaringClass.simpleName
         val methodName = method.method.name
         val tags = listOf(
-                Tag.of("client", className),
-                Tag.of("handler", methodName)
+            Tag.of("client", className),
+            Tag.of("handler", methodName),
         )
 
         val counter = Counter.builder("metered.client.count")
-                .tags(tags)
-                .register(meterRegistry)
+            .tags(tags)
+            .register(meterRegistry)
 
         val timer = Timer.builder("metered.client")
-                .tags(tags)
-                .publishPercentiles(0.50, 0.90, 0.99, 0.999)
-                .register(meterRegistry)
+            .tags(tags)
+            .publishPercentiles(0.50, 0.90, 0.99, 0.999)
+            .register(meterRegistry)
 
         try {
             timer.recordCallable { joinPoint.proceed() }
