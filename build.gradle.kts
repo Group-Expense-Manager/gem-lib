@@ -45,7 +45,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.4.1"
+version = "0.4.2"
 
 apply(plugin = "kotlin")
 apply(plugin = "kotlin-spring")
@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.spring.boot.starter.aop)
     implementation(libs.micrometer.registry.prometheus)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
+    implementation(libs.springdoc.openapi.starter.webmvc.api)
 
     implementation(testlibs.bundles.kotest.core)
     implementation(testlibs.mockito)

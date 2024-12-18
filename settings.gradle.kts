@@ -42,6 +42,7 @@ dependencyResolutionManagement {
             library("kotlinlogging", "io.github.microutils:kotlin-logging:3.0.5")
 
             library("springdoc-openapi-starter-webmvc-ui", "org.springdoc", "springdoc-openapi-starter-webmvc-ui").versionRef("springdoc-openapi")
+            library("springdoc-openapi-starter-webmvc-api", "org.springdoc", "springdoc-openapi-starter-webmvc-api").versionRef("springdoc-openapi")
         }
 
         create("testlibs") {
