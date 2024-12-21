@@ -10,7 +10,9 @@ class NullOrPatternValidator : ConstraintValidator<NullOrPattern, String> {
     override fun initialize(constraintValidator: NullOrPattern) {
         pattern = Pattern.compile(constraintValidator.pattern)
     }
-    override fun isValid(value: String?, constraintValidatorContext: ConstraintValidatorContext): Boolean {
-        return value == null || pattern.matcher(value).matches()
-    }
+
+    override fun isValid(
+        value: String?,
+        constraintValidatorContext: ConstraintValidatorContext,
+    ): Boolean = value == null || pattern.matcher(value).matches()
 }

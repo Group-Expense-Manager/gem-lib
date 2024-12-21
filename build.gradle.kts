@@ -1,21 +1,9 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-
-buildscript {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        maven("https://jitpack.io")
-    }
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${tools.versions.kotlin.get()}")
-    }
-}
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 tasks.wrapper {
     gradleVersion = "8.11.1"
@@ -28,25 +16,19 @@ repositories {
 }
 
 plugins {
-    application
-    `maven-publish`
-
-    id("application")
     id("java")
     id("maven-publish")
 
     alias(tools.plugins.dependency.management)
     alias(tools.plugins.spring.boot)
-    alias(tools.plugins.kover)
     alias(tools.plugins.detekt)
     alias(tools.plugins.ktlint.core)
-    alias(tools.plugins.ktlint.idea)
     alias(tools.plugins.kotlin.jvm)
     alias(tools.plugins.kotlin.spring)
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.4.2"
+version = "0.5.0"
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
@@ -79,10 +61,8 @@ dependencies {
     detektPlugins(detectlibs.kure.potlin)
 }
 
-ktlint {
-    reporters {
-        reporter(ReporterType.PLAIN)
-    }
+configure<KtlintExtension> {
+    version.set("1.5.0")
 }
 
 tasks {
@@ -99,7 +79,7 @@ tasks {
     withType<Test> {
         useJUnitPlatform()
         testLogging {
-            exceptionFormat = TestExceptionFormat.FULL
+            exceptionFormat = FULL
         }
         reports {
             junitXml.required = true

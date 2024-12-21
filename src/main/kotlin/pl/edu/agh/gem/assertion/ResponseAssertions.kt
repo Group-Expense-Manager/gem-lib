@@ -15,19 +15,35 @@ inline infix fun <reified T> ResponseSpec.shouldHaveBody(expected: T) {
 }
 
 inline infix fun <reified T> ResponseSpec.shouldBody(assertion: T.() -> Unit) {
-    this.expectBody(T::class.java).returnResult().responseBody?.apply(assertion)
+    this
+        .expectBody(T::class.java)
+        .returnResult()
+        .responseBody
+        ?.apply(assertion)
 }
 
 infix fun ResponseSpec.shouldHaveErrors(assertion: SimpleErrorsHolder.() -> Unit) {
-    this.expectBody(SimpleErrorsHolder::class.java).returnResult().responseBody?.apply(assertion)
+    this
+        .expectBody(SimpleErrorsHolder::class.java)
+        .returnResult()
+        .responseBody
+        ?.apply(assertion)
 }
 
 infix fun ResponseSpec.shouldHaveValidationError(errorMessage: String) {
-    this.expectBody(SimpleErrorsHolder::class.java).returnResult().responseBody?.errors
+    this
+        .expectBody(SimpleErrorsHolder::class.java)
+        .returnResult()
+        .responseBody
+        ?.errors
         ?.shouldExist { it.code == "VALIDATION_ERROR" && it.message == errorMessage }
 }
 
 infix fun ResponseSpec.shouldHaveValidatorError(errorMessage: String) {
-    this.expectBody(SimpleErrorsHolder::class.java).returnResult().responseBody?.errors
+    this
+        .expectBody(SimpleErrorsHolder::class.java)
+        .returnResult()
+        .responseBody
+        ?.errors
         ?.shouldExist { it.code == "VALIDATOR_ERROR" && it.message == errorMessage }
 }

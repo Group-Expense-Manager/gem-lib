@@ -5,9 +5,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class ExecutorProperties {
-
     @Bean
-    fun executorFactory(): ExecutorFactory {
-        return ExecutorFactory()
-    }
+    fun executorFactory(): ExecutorFactory = ExecutorFactory()
 }

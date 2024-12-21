@@ -1,17 +1,12 @@
-
 rootProject.name = "gem-lib"
-include("gem-lib")
 
 dependencyResolutionManagement {
     versionCatalogs {
         create("tools") {
             version("jvm", "21")
-            version("kotlin", "2.1.0")
+            version("kotlin", "2.0.10")
 
-            version("ktlint", "11.6.1")
-            plugin("ktlint-core", "org.jlleitschuh.gradle.ktlint").versionRef("ktlint")
-            plugin("ktlint-idea", "org.jlleitschuh.gradle.ktlint-idea").versionRef("ktlint")
-
+            plugin("ktlint-core", "org.jlleitschuh.gradle.ktlint").version("12.1.2")
             plugin("kover", "org.jetbrains.kotlinx.kover").version("0.9.0")
 
             plugin("detekt", "io.gitlab.arturbosch.detekt").version("1.23.7")
@@ -77,7 +72,7 @@ dependencyResolutionManagement {
             library("detekt-rules-libraries", "io.gitlab.arturbosch.detekt", "detekt-rules-libraries").version("1.23.7")
             library("detekt-rules-ruleauthors", "io.gitlab.arturbosch.detekt", "detekt-rules-ruleauthors").version("1.23.7")
             library("detekt-compiler-wrapper", "com.braisgabin.detekt", "kotlin-compiler-wrapper").version("0.0.4")
-            library("detekt-faire", "com.github.Faire", "faire-detekt-rules").version("0.3.0")
+            library("detekt-faire", "com.faire", "faire-detekt-rules").version("0.4.0")
             library("detekt-hbmartin", "com.github.hbmartin", "hbmartin-detekt-rules").version("0.1.7")
             library("kure-potlin", "pl.setblack", "kure-potlin").version("0.7.0")
         }

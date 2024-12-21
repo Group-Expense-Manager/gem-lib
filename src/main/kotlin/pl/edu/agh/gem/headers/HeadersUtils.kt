@@ -9,7 +9,6 @@ import pl.edu.agh.gem.media.InternalApiMediaType.APPLICATION_JSON_INTERNAL_VER_1
 import pl.edu.agh.gem.security.GemUser
 
 object HeadersUtils {
-
     fun HttpHeaders.withValidatedUser(user: GemUser) =
         apply {
             add(X_OAUTH_TOKEN_VALIDATED, jacksonObjectMapper().writeValueAsString(user))

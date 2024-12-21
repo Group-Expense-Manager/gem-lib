@@ -7,9 +7,7 @@ object TraceIdContextHolder {
         traceIdHolder.set(traceId)
     }
 
-    fun getTraceId(): String? {
-        return traceIdHolder.get()
-    }
+    fun getTraceId(): String? = traceIdHolder.get()
 
     fun clear() {
         traceIdHolder.remove()

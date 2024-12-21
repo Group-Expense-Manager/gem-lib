@@ -11,26 +11,22 @@ object DummyGroup {
     const val OTHER_GROUP_ID = "otherGroupId"
 }
 
-fun createGroupMembersResponse(
-    vararg users: String = arrayOf(USER_ID),
-) = GroupMembersResponse(
-    members = users.map { GroupMemberResponse(it) },
-)
+fun createGroupMembersResponse(vararg users: String = arrayOf(USER_ID)) =
+    GroupMembersResponse(
+        members = users.map { GroupMemberResponse(it) },
+    )
 
-fun createGroupMemberResponse(
-    id: String = USER_ID,
-) = GroupMemberResponse(
-    id = id,
-)
+fun createGroupMemberResponse(id: String = USER_ID) =
+    GroupMemberResponse(
+        id = id,
+    )
 
-fun createGroupMembers(
-    vararg users: String = arrayOf(USER_ID),
-) = GroupMembers(
-    members = users.map { GroupMember(it) },
-)
+fun createGroupMembers(vararg users: String = arrayOf(USER_ID)) =
+    GroupMembers(
+        members = users.map { GroupMember(it) },
+    )
 
-fun createGroupMember(
-    id: String = USER_ID,
-) = GroupMember(
-    id = id,
-)
+fun createGroupMember(id: String = USER_ID) =
+    GroupMember(
+        id = id,
+    )

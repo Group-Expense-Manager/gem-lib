@@ -16,12 +16,9 @@ import org.springframework.web.filter.OncePerRequestFilter
 class HttpLoggingAutoConfiguration(
     private val properties: HttpLoggingProperties,
 ) {
-
     @Bean
     @Order(1)
-    fun requestLoggingFilter(): OncePerRequestFilter {
-        return RequestLoggingFilter(properties)
-    }
+    fun requestLoggingFilter(): OncePerRequestFilter = RequestLoggingFilter(properties)
 
     @Bean
     @Order(1)

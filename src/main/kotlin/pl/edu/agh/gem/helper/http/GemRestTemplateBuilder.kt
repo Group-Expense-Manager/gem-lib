@@ -10,9 +10,7 @@ class GemRestTemplateFactory(
     private val loggingInterceptor: LoggingInterceptor,
     private val traceIdInterceptor: TraceIdInterceptor,
 ) {
-    fun builder(): GemRestTemplateBuilder {
-        return GemRestTemplateBuilder(loggingInterceptor, traceIdInterceptor)
-    }
+    fun builder(): GemRestTemplateBuilder = GemRestTemplateBuilder(loggingInterceptor, traceIdInterceptor)
 }
 
 class GemRestTemplateBuilder(
@@ -22,18 +20,17 @@ class GemRestTemplateBuilder(
     private val baseRestTemplate = RestTemplateBuilder()
 
     fun withConnectTimeout(connectTimeout: Duration): GemRestTemplateBuilder {
-        baseRestTemplate.setConnectTimeout(connectTimeout)
+        baseRestTemplate.connectTimeout(connectTimeout)
         return this
     }
 
     fun withReadTimeout(readTimeout: Duration): GemRestTemplateBuilder {
-        baseRestTemplate.setReadTimeout(readTimeout)
+        baseRestTemplate.readTimeout(readTimeout)
         return this
     }
 
-    fun build(): RestTemplate {
-        return baseRestTemplate
+    fun build(): RestTemplate =
+        baseRestTemplate
             .additionalInterceptors(traceIdInterceptor, loggingInterceptor)
             .build()
-    }
 }

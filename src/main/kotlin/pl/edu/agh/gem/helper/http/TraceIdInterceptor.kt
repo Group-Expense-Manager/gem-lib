@@ -9,7 +9,6 @@ import pl.edu.agh.gem.headers.CustomHeaders.TRACE_ID
 
 @Component
 class TraceIdInterceptor : ClientHttpRequestInterceptor {
-
     override fun intercept(
         request: HttpRequest,
         body: ByteArray,

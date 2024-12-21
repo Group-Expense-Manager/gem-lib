@@ -12,7 +12,8 @@ class DecimalPlacesValidator : ConstraintValidator<DecimalPlaces, BigDecimal> {
         this.maxDecimalPlaces = constraintAnnotation.max
     }
 
-    override fun isValid(value: BigDecimal, context: ConstraintValidatorContext): Boolean {
-        return value.scale() <= maxDecimalPlaces
-    }
+    override fun isValid(
+        value: BigDecimal,
+        context: ConstraintValidatorContext,
+    ): Boolean = value.scale() <= maxDecimalPlaces
 }

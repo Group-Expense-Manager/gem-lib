@@ -14,30 +14,33 @@ import pl.edu.agh.gem.headers.CustomHeaders.X_OAUTH_TOKEN_VALIDATED
 import pl.edu.agh.gem.security.resolver.GemEmailResolver
 import pl.edu.agh.gem.security.resolver.MissingTokenException
 
-class GemEmailResolverTest : ShouldSpec({
+class GemEmailResolverTest :
+    ShouldSpec({
 
-    val resolver = GemEmailResolver()
-    val parameter = mock<MethodParameter>()
-    val mavContainer = mock<ModelAndViewContainer>()
-    val webRequest = mock<NativeWebRequest>()
-    val binderFactory = mock<WebDataBinderFactory>()
+        val resolver = GemEmailResolver()
+        val parameter = mock<MethodParameter>()
+        val mavContainer = mock<ModelAndViewContainer>()
+        val webRequest = mock<NativeWebRequest>()
+        val binderFactory = mock<WebDataBinderFactory>()
 
-    should("GemUserResolver resolve GemUser email from request header") {
-        // Given
-        val user = GemUser("123", "example@op.pl")
-        whenever(webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED)).thenReturn(jacksonObjectMapper().writeValueAsString(user))
+        should("GemUserResolver resolve GemUser email from request header") {
+            // Given
+            val user = GemUser("123", "example@op.pl")
+            whenever(
+                webRequest.getHeader(X_OAUTH_TOKEN_VALIDATED),
+            ).thenReturn(jacksonObjectMapper().writeValueAsString(user))
 
-        // When
-        val result = resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory)
+            // When
+            val result = resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory)
 
-        // Then
-        result shouldBe user.email
-    }
-
-    should("throw MissingTokenException when trying resolve GemUser email from request header") {
-        // When & Then
-        shouldThrow<MissingTokenException> {
-            resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory)
+            // Then
+            result shouldBe user.email
         }
-    }
-},)
+
+        should("throw MissingTokenException when trying resolve GemUser email from request header") {
+            // When & Then
+            shouldThrow<MissingTokenException> {
+                resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory)
+            }
+        }
+    })

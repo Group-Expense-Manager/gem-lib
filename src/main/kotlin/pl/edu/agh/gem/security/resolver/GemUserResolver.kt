@@ -11,9 +11,8 @@ import pl.edu.agh.gem.security.GemAuthenticatedUser
 import pl.edu.agh.gem.security.GemUser
 
 class GemUserResolver : HandlerMethodArgumentResolver {
-    override fun supportsParameter(parameter: MethodParameter): Boolean {
-        return parameter.parameterType == GemUser::class.java && parameter.hasParameterAnnotation(GemAuthenticatedUser::class.java)
-    }
+    override fun supportsParameter(parameter: MethodParameter): Boolean =
+        parameter.parameterType == GemUser::class.java && parameter.hasParameterAnnotation(GemAuthenticatedUser::class.java)
 
     override fun resolveArgument(
         parameter: MethodParameter,
