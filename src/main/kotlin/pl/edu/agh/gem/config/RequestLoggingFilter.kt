@@ -19,8 +19,8 @@ import pl.edu.agh.gem.helper.logger.LoggerHelper.getLogger
 @Order(1)
 class RequestLoggingFilter(
     private val properties: HttpLoggingProperties,
-) : OncePerRequestFilter(), Ordered {
-
+) : OncePerRequestFilter(),
+    Ordered {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -29,9 +29,10 @@ class RequestLoggingFilter(
         val wrappedRequest = CustomHttpServletRequestWrapper(request)
         val wrappedResponse = CustomHttpServletResponseWrapper(response)
 
-        val traceId = request.getHeader(TRACE_ID) ?: run {
-            TraceIdGenerator.generateTraceId()
-        }
+        val traceId =
+            request.getHeader(TRACE_ID) ?: run {
+                TraceIdGenerator.generateTraceId()
+            }
         response.setHeader(TRACE_ID, traceId)
         TraceIdContextHolder.setTraceId(traceId)
 
@@ -39,24 +40,31 @@ class RequestLoggingFilter(
         val shouldLog = properties.excludeUrlPrefixes.none { prefix -> requestURI.startsWith(prefix) }
 
         if (shouldLog) {
-            val logMessage = StringBuilder("Endpoint HTTP Request - ${wrappedRequest.method} ${wrappedRequest.requestURI}\n")
+            val logMessage =
+                StringBuilder(
+                    "Endpoint HTTP Request - ${wrappedRequest.method} ${wrappedRequest.requestURI}\n",
+                )
 
             if (properties.logClient) {
                 logMessage.append("Client IP: ${wrappedRequest.remoteAddr}\n")
             }
 
             if (properties.logHeaders) {
-                val headers = wrappedRequest.headerNames
-                    .toList()
-                    .filterNot { it in properties.excludeHeaders }
-                    .joinToString("\n\t") { "$it: ${wrappedRequest.getHeader(it)}" }
+                val headers =
+                    wrappedRequest.headerNames
+                        .toList()
+                        .filterNot { it in properties.excludeHeaders }
+                        .joinToString("\n\t") { "$it: ${wrappedRequest.getHeader(it)}" }
                 logMessage.append("Headers:\n\t$headers\n")
                 logMessage.append("Trace ID: $traceId\n")
             }
 
             if (properties.logPayload) {
-                val payload = wrappedRequest.inputStream.bufferedReader().use { it.readText() }
-                    .take(properties.maxPayloadLength.toInt())
+                val payload =
+                    wrappedRequest.inputStream
+                        .bufferedReader()
+                        .use { it.readText() }
+                        .take(properties.maxPayloadLength.toInt())
                 logMessage.append("Payload: $payload\n")
             }
 
@@ -67,13 +75,16 @@ class RequestLoggingFilter(
 
         if (shouldLog) {
             val responseBody = wrappedResponse.getResponsePayload()
-            val responseLogMessage = StringBuilder(
-                "Endpoint HTTP Response - ${request.method} ${request.requestURI} Status: ${wrappedResponse.status}\n",
-            )
+            val responseLogMessage =
+                StringBuilder(
+                    "Endpoint HTTP Response - ${request.method} ${request.requestURI} Status: ${wrappedResponse.status}\n",
+                )
 
             if (properties.logHeaders) {
-                val headers = response.headerNames.toList()
-                    .joinToString("\n\t") { "$it: ${response.getHeader(it)}" }
+                val headers =
+                    response.headerNames
+                        .toList()
+                        .joinToString("\n\t") { "$it: ${response.getHeader(it)}" }
                 responseLogMessage.append("Headers:\n\t$headers\n")
             }
 

@@ -1,6 +1,6 @@
 package pl.edu.agh.gem.threads
 
-import wiremock.org.apache.commons.lang3.concurrent.BasicThreadFactory
+import org.apache.commons.lang3.concurrent.BasicThreadFactory
 import java.lang.Thread.UncaughtExceptionHandler
 import java.util.concurrent.Executor
 import java.util.concurrent.LinkedBlockingQueue
@@ -8,14 +8,10 @@ import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 
 class ExecutorFactory {
-    fun createExecutor(config: ExecutorConfig): Executor {
-        return createThreadPoolExecutor(config)
-    }
+    fun createExecutor(config: ExecutorConfig): Executor = createThreadPoolExecutor(config)
 
-    private fun createThreadPoolExecutor(
-        executorConfig: ExecutorConfig,
-    ): ThreadPoolExecutor {
-        return ThreadPoolExecutor(
+    private fun createThreadPoolExecutor(executorConfig: ExecutorConfig): ThreadPoolExecutor =
+        ThreadPoolExecutor(
             executorConfig.corePoolSize,
             executorConfig.maxPoolSize,
             executorConfig.keepAliveTime,
@@ -29,19 +25,18 @@ class ExecutorFactory {
             ),
             executorConfig.rejectedExecutionHandler,
         ).apply { if (executorConfig.preRestartAllCoreThreads) prestartAllCoreThreads() }
-    }
 
     private fun createThreadFactory(
         threadPoolName: String,
         daemonThreads: Boolean,
         threadPriority: Int?,
         handler: UncaughtExceptionHandler,
-    ): ThreadFactory {
-        return BasicThreadFactory.Builder()
+    ): ThreadFactory =
+        BasicThreadFactory
+            .Builder()
             .namingPattern("$threadPoolName-%d")
             .uncaughtExceptionHandler(handler)
             .daemon(daemonThreads)
             .apply { if (threadPriority != null) priority(threadPriority) }
             .build()
-    }
 }

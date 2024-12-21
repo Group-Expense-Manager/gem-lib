@@ -1,6 +1,6 @@
 package pl.edu.agh.gem.threads
 
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.lang.Thread.UncaughtExceptionHandler
 import java.util.concurrent.RejectedExecutionHandler
 import java.util.concurrent.ThreadPoolExecutor.AbortPolicy
@@ -19,8 +19,9 @@ data class ExecutorConfig(
     val daemonThreads: Boolean = true,
     val threadPriority: Int? = null,
     val rejectedExecutionHandler: RejectedExecutionHandler = AbortPolicy(),
-    val uncaughtExceptionHandler: UncaughtExceptionHandler = UncaughtExceptionHandler { t, e ->
-        logger.error("Exception in thread $t", e)
-    },
+    val uncaughtExceptionHandler: UncaughtExceptionHandler =
+        UncaughtExceptionHandler { t, e ->
+            logger.error(e) { "Exception in thread $t" }
+        },
     val preRestartAllCoreThreads: Boolean = true,
 )

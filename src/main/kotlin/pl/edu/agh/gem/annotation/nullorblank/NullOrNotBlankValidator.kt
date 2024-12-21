@@ -4,8 +4,8 @@ import jakarta.validation.ConstraintValidator
 import jakarta.validation.ConstraintValidatorContext
 
 class NullOrNotBlankValidator : ConstraintValidator<NullOrNotBlank?, String?> {
-
-    override fun isValid(value: String?, constraintValidatorContext: ConstraintValidatorContext): Boolean {
-        return value == null || value.trim { it <= ' ' }.isNotEmpty()
-    }
+    override fun isValid(
+        value: String?,
+        constraintValidatorContext: ConstraintValidatorContext,
+    ): Boolean = value == null || value.trim { it <= ' ' }.isNotEmpty()
 }

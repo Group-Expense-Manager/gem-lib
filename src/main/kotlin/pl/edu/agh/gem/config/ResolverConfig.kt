@@ -10,7 +10,6 @@ import pl.edu.agh.gem.security.resolver.GemUserResolver
 
 @Configuration
 class ResolverConfig : WebMvcConfigurer {
-
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver>) {
         resolvers.add(GemUserResolver())
         resolvers.add(GemUserIdResolver())

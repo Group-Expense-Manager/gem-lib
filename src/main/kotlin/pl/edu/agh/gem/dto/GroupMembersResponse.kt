@@ -11,10 +11,12 @@ data class GroupMemberResponse(
     val id: String,
 )
 
-fun GroupMembersResponse.toDomain() = GroupMembers(
-    members = members.map { it.toDomain() },
-)
+fun GroupMembersResponse.toDomain() =
+    GroupMembers(
+        members = members.map { it.toDomain() },
+    )
 
-fun GroupMemberResponse.toDomain() = GroupMember(
-    id = id,
-)
+fun GroupMemberResponse.toDomain() =
+    GroupMember(
+        id = id,
+    )

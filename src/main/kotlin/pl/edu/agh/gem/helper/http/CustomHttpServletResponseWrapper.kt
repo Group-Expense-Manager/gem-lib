@@ -12,31 +12,26 @@ import kotlin.text.Charsets.UTF_8
 class CustomHttpServletResponseWrapper(
     private val response: HttpServletResponse,
 ) : HttpServletResponseWrapper(response) {
-
     private val byteArrayOutputStream = ByteArrayOutputStream()
 
     fun writeOutputStream() {
         response.outputStream.write(byteArrayOutputStream.toByteArray())
     }
 
-    fun getResponsePayload(): String {
-        return byteArrayOutputStream.toString(UTF_8.name())
-    }
+    fun getResponsePayload(): String = byteArrayOutputStream.toString(UTF_8.name())
 
-    override fun getOutputStream(): ServletOutputStream {
-        return HttpBodyServletOutputStream(
+    override fun getOutputStream(): ServletOutputStream =
+        HttpBodyServletOutputStream(
             outputStream = this.byteArrayOutputStream,
         )
-    }
 
-    override fun getWriter(): PrintWriter {
-        return PrintWriter(
+    override fun getWriter(): PrintWriter =
+        PrintWriter(
             OutputStreamWriter(
                 this.byteArrayOutputStream,
                 this.response.characterEncoding,
             ),
         )
-    }
 
     override fun flushBuffer() = writer.flush()
 
@@ -45,7 +40,6 @@ class CustomHttpServletResponseWrapper(
     private class HttpBodyServletOutputStream(
         private val outputStream: ByteArrayOutputStream,
     ) : ServletOutputStream() {
-
         override fun write(b: Int) = outputStream.write(b)
 
         override fun isReady(): Boolean = true

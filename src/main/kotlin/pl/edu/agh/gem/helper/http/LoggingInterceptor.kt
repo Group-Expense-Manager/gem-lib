@@ -19,7 +19,6 @@ import java.nio.charset.StandardCharsets.UTF_8
 class LoggingInterceptor(
     private val properties: HttpLoggingProperties,
 ) : ClientHttpRequestInterceptor {
-
     override fun intercept(
         request: HttpRequest,
         body: ByteArray,
@@ -28,9 +27,10 @@ class LoggingInterceptor(
         val url = request.uri.toString()
         val shouldLog = properties.excludeUrlPrefixes.none { url.startsWith(it) }
 
-        val traceId = request.headers[TRACE_ID]?.toString() ?: run {
-            TraceIdGenerator.generateTraceId()
-        }
+        val traceId =
+            request.headers[TRACE_ID]?.toString() ?: run {
+                TraceIdGenerator.generateTraceId()
+            }
         request.headers.add(TRACE_ID, traceId)
         TraceIdContextHolder.setTraceId(traceId)
 
@@ -56,7 +56,10 @@ class LoggingInterceptor(
         if (shouldLog) {
             val responseBody = wrappedResponse.body
 
-            val logMessage = StringBuilder("Client HTTP Response - ${request.method} ${request.uri.path} Status: ${wrappedResponse.statusCode}\n")
+            val logMessage =
+                StringBuilder(
+                    "Client HTTP Response - ${request.method} ${request.uri.path} Status: ${wrappedResponse.statusCode}\n",
+                )
 
             if (properties.logHeaders) {
                 val headers = logHeadersString(wrappedResponse.headers)
@@ -74,16 +77,17 @@ class LoggingInterceptor(
         return wrappedResponse
     }
 
-    private fun logHeadersString(headers: HttpHeaders): String {
-        return headers
+    private fun logHeadersString(headers: HttpHeaders): String =
+        headers
             .filterKeys { it !in properties.excludeHeaders }
             .map { "${it.key}: ${it.value.joinToString()}" }
             .joinToString("\n\t")
-    }
 
-    private fun logPayloadString(payload: ByteArray): String {
-        return payload.toString(UTF_8).take(properties.maxPayloadLength.toInt())
-    }
+    private fun logPayloadString(payload: ByteArray): String =
+        payload
+            .toString(
+                UTF_8,
+            ).take(properties.maxPayloadLength.toInt())
 
     private fun logPayloadString(responseBody: InputStream): String {
         BufferedReader(InputStreamReader(responseBody, UTF_8)).use { reader ->
@@ -96,9 +100,7 @@ class LoggingInterceptor(
     ) : ClientHttpResponse by delegate {
         private val bodyBytes: ByteArray = delegate.body.readAllBytes()
 
-        override fun getBody(): InputStream {
-            return ByteArrayInputStream(bodyBytes)
-        }
+        override fun getBody(): InputStream = ByteArrayInputStream(bodyBytes)
 
         override fun close() {
             delegate.close()
