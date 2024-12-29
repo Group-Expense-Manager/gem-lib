@@ -28,7 +28,7 @@ plugins {
 }
 
 project.group = "pl.edu.agh.gem"
-version = "0.5.0"
+version = "0.5.1"
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
