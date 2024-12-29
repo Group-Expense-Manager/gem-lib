@@ -12,6 +12,12 @@ management:
     web:
       exposure:
         include: "*"
+        exclude:
+          - "/swagger-ui.html"
+          - "/v3/api-docs"
+          - "/actuator/**"
+          - "/actuator/health"
+          - "/actuator/prometheus"
   endpoint:
     prometheus:
       enabled: true
