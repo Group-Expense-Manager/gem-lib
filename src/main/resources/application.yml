@@ -8,16 +8,14 @@ logging:
     root: DEBUG
 
 management:
+  metrics:
+    distribution:
+      percentiles:
+        http.server.requests: 0.50, 0.90, 0.99, 0.999
   endpoints:
     web:
       exposure:
         include: "*"
-        exclude:
-          - "/swagger-ui.html"
-          - "/v3/api-docs"
-          - "/actuator/**"
-          - "/actuator/health"
-          - "/actuator/prometheus"
   endpoint:
     prometheus:
       enabled: true
