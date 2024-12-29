@@ -13,10 +13,11 @@ data class HttpLoggingProperties(
     val logHeaders: Boolean = true,
     val logClient: Boolean = true,
     val excludeHeaders: List<String> = listOf("Authorization"),
-    val excludeUrlPrefixes: List<String> = listOf(
+    val excludeUrlPrefixes: List<String> =
+        listOf(
             "/swagger-ui.html",
             "/v3/api-docs",
             "/actuator/health",
             "/actuator/prometheus",
-    ),
+        ),
 )
