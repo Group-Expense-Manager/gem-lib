@@ -28,13 +28,13 @@ dependencyResolutionManagement {
             version("springdoc-openapi", "2.7.0")
 
             library("guava", "com.google.guava:guava:33.4.0-jre")
-            library("loki-logback-appender", "com.github.loki4j:loki-logback-appender:1.5.2")
+            library("loki-logback-appender", "com.github.loki4j:loki-logback-appender:1.6.0")
 
-            library("spring-boot-starter-actuator", "org.springframework.boot:spring-boot-starter-actuator:3.4.0")
-            library("spring-boot-starter-aop", "org.springframework.boot:spring-boot-starter-aop:3.4.0")
-            library("micrometer-registry-prometheus", "io.micrometer:micrometer-registry-prometheus:1.14.2")
+            library("spring-boot-starter-actuator", "org.springframework.boot:spring-boot-starter-actuator:3.4.3")
+            library("spring-boot-starter-aop", "org.springframework.boot:spring-boot-starter-aop:3.4.3")
+            library("micrometer-registry-prometheus", "io.micrometer:micrometer-registry-prometheus:1.14.4")
 
-            library("kotlinlogging", "io.github.oshai:kotlin-logging-jvm:7.0.0")
+            library("kotlinlogging", "io.github.oshai:kotlin-logging-jvm:7.0.4")
 
             library("springdoc-openapi-starter-webmvc-ui", "org.springdoc", "springdoc-openapi-starter-webmvc-ui").versionRef("springdoc-openapi")
             library("springdoc-openapi-starter-webmvc-api", "org.springdoc", "springdoc-openapi-starter-webmvc-api").versionRef("springdoc-openapi")
@@ -50,10 +50,10 @@ dependencyResolutionManagement {
             library("kotest-wiremock", "io.kotest.extensions:kotest-extensions-wiremock:3.1.0")
 
             library("mockito", "org.mockito.kotlin:mockito-kotlin:5.4.0")
-            library("archunit", "com.tngtech.archunit:archunit-junit5:1.3.0")
-            library("wiremock", "org.wiremock:wiremock:3.10.0")
+            library("archunit", "com.tngtech.archunit:archunit-junit5:1.4.0")
+            library("wiremock", "org.wiremock:wiremock:3.12.0")
 
-            library("junit", "org.junit.jupiter:junit-jupiter-engine:5.11.4")
+            library("junit", "org.junit.jupiter:junit-jupiter-engine:5.12.0")
 
             bundle(
                 "kotest-core",
